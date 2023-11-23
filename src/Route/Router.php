@@ -17,6 +17,7 @@ class Router
     public function checkRoute(): void
     {
         if (count($this->routes) === 0) {
+            http_response_code(404);
             echo "Error 404: Page not found";
         }
     }
