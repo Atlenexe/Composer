@@ -4,7 +4,7 @@ namespace Route;
 
 class Router
 {
-    public $routes = [];
+    private $routes = [];
 
     public function defineRoute(string $method, string $url, mixed $controller, string $methodName): void
     {
@@ -21,7 +21,7 @@ class Router
         }
     }
 
-    public function addRoute(string $url): void
+    private function addRoute(string $url): void
     {
         $this->routes[] = $url;
     }
