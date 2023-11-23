@@ -4,23 +4,26 @@ namespace Route;
 
 class Router
 {
-    protected $routes = [];
+    public $routes = [];
 
     public function defineRoute(string $method, string $url, mixed $controller, string $methodName): void
     {
         if ($_SERVER['REQUEST_METHOD'] === $method && $_SERVER['REQUEST_URI'] === $url) {
             $this->executeAction($controller, $methodName);
+            $this->addRoute($method, $url, $controller, $methodName);
         }
     }
 
-    public function addRoute(string $method, string $url, mixed $controller, string $methodName): void
+    public function checkRoute(): void
     {
-        $this->routes[] = [
-            'method' => $method,
-            'url' => $url,
-            'controller' => $controller,
-            'methodName' => $methodName
-        ];
+        if (count($this->routes) === 0) {
+            echo "Error 404: Page not found";
+        }
+    }
+
+    public function addRoute(string $url): void
+    {
+        $this->routes[] = $url;
     }
 
     private function executeAction(mixed $controller, string $methodName): void

@@ -13,3 +13,4 @@ use Route\Router;
 $route = new Router();
 $route->defineRoute("GET", "/", HomeController::class, "index");
 $route->defineRoute("GET", "/blog", BlogController::class, "index");
+$route->checkRoute();
